@@ -1,8 +1,18 @@
-require 'pry'
+
 
 require_relative 'client'
 require_relative 'happitail'
 require_relative 'animal'
+
+
+
+
+
+
+
+
+
+
 
 h = Happitail.new
 
@@ -25,6 +35,38 @@ c3 = Client.new "Stuart", 33, :male, 1, 0
   h.clients[client.name.downcase.to_sym] = client
 end
 
-binding.pry
+puts "Welcome to the Happitail Animal Shelter!"
+puts "Type in the number of what action you would you like to do?"
+  puts "1) List animals for adoption'"
+  puts "2) List shelter's client names"
+  puts "3) Adopt an animal"
+  puts  "4) Return an animal"
+    response = gets.chomp
+    case response
+    when "1"
+      h.available_animals
+    when '2'
+      h.clients
+    when '3'
+      puts "Which client are you?"
+      h.clients
+      client_name = gets.chomp.to_sym
+      puts "What pet would you like to adopt?"
+      puts h.available_animals
+        adopt_pet = gets.chomp.to_sym
+        h.do_adopt (client_name), (adopt_pet)
+      puts "You have now adopted a pet!"
+      puts h.client[client_name]
+    when '4'
+      puts "Which client are you?"
+      h.client
+      client_name = gets.chomp.to_sym
+      puts "What pet would you like to abandon?"
+      puts h.clients[client_name].pets[:pet_name]
+        adopt_pet = gets.chomp.to_sym
+        h.do_adopt (client_name), (adopt_pet)
+      puts "You have now abandoned a pet :("
+    end
+
 
 
