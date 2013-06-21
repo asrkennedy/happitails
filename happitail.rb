@@ -1,6 +1,6 @@
 class Happitail
 
-attr_accessor :available_animals, :clients, :adopted_animal
+attr_accessor :available_animals, :clients
 
 def initialize
   @available_animals = {}
